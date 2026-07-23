@@ -300,6 +300,7 @@ function initContactForm() {
       });
 
       const result = await response.json();
+      console.log(result);
 
       if (result.success) {
         submitBtn.textContent = "Message Sent!";
