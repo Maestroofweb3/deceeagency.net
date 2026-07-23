@@ -906,62 +906,171 @@
         </div>
 
         <!-- Contact Form -->
-        <div class="glass-card rounded-2xl p-8 border border-white/5 scroll-reveal">
-          <h3 class="font-display font-semibold text-xl mb-6">Send us a message</h3>
-        <form 
-        action="https://api.web3forms.com/submit"
-  method="POST"
-  id="contact-form"
-  class="space-y-5"
+<div class="glass-card rounded-2xl p-8 border border-white/5 scroll-reveal">
+
+  <h3 class="font-display font-semibold text-xl mb-6">
+    Send us a message
+  </h3>
+
+  <form
+    id="contact-form"
+    action="https://formspree.io/f/xzdnjzor"
+    method="POST"
+    class="space-y-5"
   >
 
-  <input
-    type="hidden"
-    name="access_key"
-    value="1941198c-7790-4dec-a52f-407cdbd33f2b"
-  >
-  <input type="hidden" name="access_key" value="1941198c-7790-4dec-a52f-407cdbd33f2b">
-  <input type="hidden" name="subject" value="New Lead from DeCee Agency Website">
-  <input type="hidden" name="from_name" value="DeCee Agency Website">
+    <!-- Name & Email -->
+    <div class="grid sm:grid-cols-2 gap-5">
 
-            <div class="grid sm:grid-cols-2 gap-5">
-              <div>
-                <label for="name" class="block text-sm text-gray-400 mb-2">Name</label>
-                <input type="text" id="name" name="name" required class="w-full px-4 py-3 rounded-xl bg-brand-bg border border-brand-border text-white placeholder-gray-500 focus:outline-none focus:border-brand-accent transition-colors" placeholder="John Doe">
-              </div>
-              <div>
-                <label for="email" class="block text-sm text-gray-400 mb-2">Email</label>
-                <input type="email" id="email" name="email" required class="w-full px-4 py-3 rounded-xl bg-brand-bg border border-brand-border text-white placeholder-gray-500 focus:outline-none focus:border-brand-accent transition-colors" placeholder="john@store.com">
-              </div>
-            </div>
-            <div>
-              <label for="store" class="block text-sm text-gray-400 mb-2">Store URL</label>
-              <input type="url" id="store" name="store" class="w-full px-4 py-3 rounded-xl bg-brand-bg border border-brand-border text-white placeholder-gray-500 focus:outline-none focus:border-brand-accent transition-colors" placeholder="https://yourstore.myshopify.com">
-            </div>
-            <div>
-              <label for="budget" class="block text-sm text-gray-400 mb-2">Monthly Revenue (approx)</label>
-              <select id="budget" name="budget" class="w-full px-4 py-3 rounded-xl bg-brand-bg border border-brand-border text-white focus:outline-none focus:border-brand-accent transition-colors">
-                <option value="">Select range</option>
-                <option value="0-1k">$0 - $1,000</option>
-                <option value="1k-5k">$1,000 - $5,000</option>
-                <option value="5k-20k">$5,000 - $20,000</option>
-                <option value="20k-50k">$20,000 - $50,000</option>
-                <option value="50k+">$50,000+</option>
-              </select>
-            </div>
-            <div>
-              <label for="message" class="block text-sm text-gray-400 mb-2">Message</label>
-              <textarea id="message" name="message" rows="4" required class="w-full px-4 py-3 rounded-xl bg-brand-bg border border-brand-border text-white placeholder-gray-500 focus:outline-none focus:border-brand-accent transition-colors resize-none" placeholder="Tell us about your goals..."></textarea>
-            </div>
-            <button type="submit" class="w-full px-6 py-4 rounded-xl bg-brand-accent text-white font-semibold hover:bg-blue-600 transition-all shadow-lg shadow-blue-900/30">
-              Send Message
-            </button>
-          </form>
-        </div>
+      <div>
+        <label
+          for="name"
+          class="block text-sm text-gray-400 mb-2"
+        >
+          Name
+        </label>
+
+        <input
+          type="text"
+          id="name"
+          name="name"
+          required
+          placeholder="John Doe"
+          class="w-full px-4 py-3 rounded-xl bg-brand-bg border border-brand-border text-white placeholder-gray-500 focus:outline-none focus:border-brand-accent transition-colors"
+        >
       </div>
-    </div>
-  </section>
 
+      <div>
+        <label
+          for="email"
+          class="block text-sm text-gray-400 mb-2"
+        >
+          Email
+        </label>
+
+        <input
+          type="email"
+          id="email"
+          name="email"
+          required
+          placeholder="john@store.com"
+          class="w-full px-4 py-3 rounded-xl bg-brand-bg border border-brand-border text-white placeholder-gray-500 focus:outline-none focus:border-brand-accent transition-colors"
+        >
+      </div>
+
+    </div>
+
+    <!-- Store URL -->
+
+    <div>
+
+      <label
+        for="store"
+        class="block text-sm text-gray-400 mb-2"
+      >
+        Store URL
+      </label>
+
+      <input
+        type="url"
+        id="store"
+        name="Store URL"
+        placeholder="https://yourstore.myshopify.com"
+        class="w-full px-4 py-3 rounded-xl bg-brand-bg border border-brand-border text-white placeholder-gray-500 focus:outline-none focus:border-brand-accent transition-colors"
+      >
+
+    </div>
+
+    <!-- Monthly Revenue -->
+
+    <div>
+
+      <label
+        for="budget"
+        class="block text-sm text-gray-400 mb-2"
+      >
+        Monthly Revenue (Approx.)
+      </label>
+
+      <select
+        id="budget"
+        name="Monthly Revenue"
+        class="w-full px-4 py-3 rounded-xl bg-brand-bg border border-brand-border text-white focus:outline-none focus:border-brand-accent transition-colors"
+      >
+
+        <option value="">Select Range</option>
+        <option>$0 – $1,000</option>
+        <option>$1,000 – $5,000</option>
+        <option>$5,000 – $20,000</option>
+        <option>$20,000 – $50,000</option>
+        <option>$50,000+</option>
+
+      </select>
+
+    </div>
+
+    <!-- Message -->
+
+    <div>
+
+      <label
+        for="message"
+        class="block text-sm text-gray-400 mb-2"
+      >
+        Message
+      </label>
+
+      <textarea
+        id="message"
+        name="message"
+        rows="5"
+        required
+        placeholder="Tell us about your Shopify store and your growth goals..."
+        class="w-full px-4 py-3 rounded-xl bg-brand-bg border border-brand-border text-white placeholder-gray-500 focus:outline-none focus:border-brand-accent transition-colors resize-none"
+      ></textarea>
+
+    </div>
+
+    <!-- Honeypot Spam Protection -->
+
+    <input
+      type="text"
+      name="_gotcha"
+      style="display:none"
+    >
+
+    <!-- Subject -->
+
+    <input
+      type="hidden"
+      name="_subject"
+      value="New Shopify Lead - DeCee Agency"
+    >
+
+    <!-- Disable Captcha -->
+
+    <input
+      type="hidden"
+      name="_captcha"
+      value="false"
+    >
+
+    <!-- Submit -->
+
+    <button
+      type="submit"
+      class="w-full px-6 py-4 rounded-xl bg-brand-accent text-white font-semibold hover:bg-blue-600 transition-all shadow-lg shadow-blue-900/30"
+    >
+      Send Message
+    </button>
+
+    <p class="text-sm text-center text-gray-500 mt-4">
+      We typically respond within 24 hours. Your information is kept private and will never be shared.
+    </p>
+
+  </form>
+
+</div>
   <!-- Footer -->
   <footer class="py-16 border-t border-brand-border/50 bg-brand-surface/20">
     <div class="max-w-7xl mx-auto px-6">
