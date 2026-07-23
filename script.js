@@ -295,9 +295,6 @@ function initContactForm() {
 
     const formData = new FormData(form);
 
-    console.log("Access Key:", formData.get("access_key"));
-console.log("All form data:", Object.fromEntries(formData.entries()));
-
     try {
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
