@@ -279,6 +279,8 @@
      CONTACT FORM
      ============================================ */
 function initContactForm() {
+  // Temporarily disabled to test Web3Forms
+}
   const form = document.getElementById("contact-form");
   if (!form) return;
 
