@@ -275,59 +275,76 @@
     });
   }
 
-  /* ============================================
-     CONTACT FORM
-     ============================================ */
+/* ============================================
+   CONTACT FORM - Web3Forms
+============================================ */
+
 function initContactForm() {
-  // Temporarily disabled to test Web3Forms
-}
   const form = document.getElementById("contact-form");
+
   if (!form) return;
+
+  const submitBtn = form.querySelector("button[type='submit']");
 
   form.addEventListener("submit", async function (e) {
     e.preventDefault();
 
-    const submitBtn = form.querySelector('button[type="submit"]');
-    const originalText = submitBtn.textContent;
+    const originalText = submitBtn.innerHTML;
 
     submitBtn.disabled = true;
-    submitBtn.textContent = "Sending...";
+    submitBtn.innerHTML = "Sending...";
 
-    const formData = new FormData(form);
-
-    
     try {
-      const response = await fetch("https://api.web3forms.com/submit", {
+      const formData = new FormData(form);
+
+      const response = await fetch(form.action, {
         method: "POST",
         body: formData
       });
 
       const result = await response.json();
+
       console.log(result);
 
       if (result.success) {
-        submitBtn.textContent = "Message Sent!";
+
+        submitBtn.innerHTML = "Message Sent ✓";
         submitBtn.classList.remove("bg-brand-accent", "hover:bg-blue-600");
         submitBtn.classList.add("bg-green-600");
 
         form.reset();
+
       } else {
-        submitBtn.textContent = "Failed to Send";
+
+        submitBtn.innerHTML = result.message || "Failed to Send";
         submitBtn.classList.remove("bg-brand-accent", "hover:bg-blue-600");
         submitBtn.classList.add("bg-red-600");
+
       }
+
     } catch (error) {
-      submitBtn.textContent = "Error";
+
+      console.error(error);
+
+      submitBtn.innerHTML = "Network Error";
       submitBtn.classList.remove("bg-brand-accent", "hover:bg-blue-600");
       submitBtn.classList.add("bg-red-600");
+
     }
 
     setTimeout(() => {
+
       submitBtn.disabled = false;
-      submitBtn.textContent = originalText;
-      submitBtn.classList.remove("bg-green-600", "bg-red-600");
-      submitBtn.classList.add("bg-brand-accent", "hover:bg-blue-600");
+      submitBtn.innerHTML = originalText;
+
+      submitBtn.classList.remove("bg-green-600");
+      submitBtn.classList.remove("bg-red-600");
+
+      submitBtn.classList.add("bg-brand-accent");
+      submitBtn.classList.add("hover:bg-blue-600");
+
     }, 3000);
+
   });
 }
 
