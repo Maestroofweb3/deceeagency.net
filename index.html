@@ -908,15 +908,22 @@
         <!-- Contact Form -->
         <div class="glass-card rounded-2xl p-8 border border-white/5 scroll-reveal">
           <h3 class="font-display font-semibold text-xl mb-6">Send us a message</h3>
-          <form action="https://api.web3forms.com/submit" method="POST">
-  <input type="hidden" name="access_key" value="f1bf112b-ced0-4b21-a357-49cca932e874">
+        <form 
+        action="https://api.web3forms.com/submit"
+  method="POST"
+  id="contact-form"
+  class="space-y-5"
+  >
 
-  <input type="text" name="name" required>
-  <input type="email" name="email" required>
-  <textarea name="message" required></textarea>
+  <input
+    type="hidden"
+    name="access_key"
+    value="1941198c-7790-4dec-a52f-407cdbd33f2b"
+  >
+  <input type="hidden" name="access_key" value="1941198c-7790-4dec-a52f-407cdbd33f2b">
+  <input type="hidden" name="subject" value="New Lead from DeCee Agency Website">
+  <input type="hidden" name="from_name" value="DeCee Agency Website">
 
-  <button type="submit">Submit Form</button>
-</form>
             <div class="grid sm:grid-cols-2 gap-5">
               <div>
                 <label for="name" class="block text-sm text-gray-400 mb-2">Name</label>
