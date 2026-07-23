@@ -278,41 +278,54 @@
   /* ============================================
      CONTACT FORM
      ============================================ */
-  function initContactForm() {
-    const form = document.getElementById('contact-form');
-    if (!form) return;
+function initContactForm() {
+  const form = document.getElementById("contact-form");
+  if (!form) return;
 
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
+  form.addEventListener("submit", async function (e) {
+    e.preventDefault();
 
-      const formData = new FormData(form);
-      const data = {};
-      formData.forEach(function (value, key) {
-        data[key] = value;
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalText = submitBtn.textContent;
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Sending...";
+
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData
       });
 
-      // Simulate form submission
-      const submitBtn = form.querySelector('button[type="submit"]');
-      const originalText = submitBtn.textContent;
-      submitBtn.disabled = true;
-      submitBtn.textContent = 'Sending...';
+      const result = await response.json();
 
-      setTimeout(function () {
-        submitBtn.textContent = 'Message Sent!';
-        submitBtn.classList.add('bg-green-600');
-        submitBtn.classList.remove('bg-brand-accent', 'hover:bg-blue-600');
+      if (result.success) {
+        submitBtn.textContent = "Message Sent!";
+        submitBtn.classList.remove("bg-brand-accent", "hover:bg-blue-600");
+        submitBtn.classList.add("bg-green-600");
 
-        // Reset after delay
-        setTimeout(function () {
-          form.reset();
-          submitBtn.disabled = false;
-          submitBtn.textContent = originalText;
-          submitBtn.classList.remove('bg-green-600');
-          submitBtn.classList.add('bg-brand-accent', 'hover:bg-blue-600');
-        }, 2500);
-      }, 1200);
-    });
-  }
+        form.reset();
+      } else {
+        submitBtn.textContent = "Failed to Send";
+        submitBtn.classList.remove("bg-brand-accent", "hover:bg-blue-600");
+        submitBtn.classList.add("bg-red-600");
+      }
+    } catch (error) {
+      submitBtn.textContent = "Error";
+      submitBtn.classList.remove("bg-brand-accent", "hover:bg-blue-600");
+      submitBtn.classList.add("bg-red-600");
+    }
+
+    setTimeout(() => {
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalText;
+      submitBtn.classList.remove("bg-green-600", "bg-red-600");
+      submitBtn.classList.add("bg-brand-accent", "hover:bg-blue-600");
+    }, 3000);
+  });
+}
 
   /* ============================================
      LAZY LOADING IMAGES (if any added later)
