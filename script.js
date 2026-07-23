@@ -276,7 +276,7 @@
   }
 
 /* ============================================
-   CONTACT FORM - Web3Forms
+   CONTACT FORM - FORMSPREE
 ============================================ */
 
 function initContactForm() {
@@ -287,6 +287,7 @@ function initContactForm() {
   const submitBtn = form.querySelector("button[type='submit']");
 
   form.addEventListener("submit", async function (e) {
+
     e.preventDefault();
 
     const originalText = submitBtn.innerHTML;
@@ -295,31 +296,43 @@ function initContactForm() {
     submitBtn.innerHTML = "Sending...";
 
     try {
-      const formData = new FormData(form);
 
       const response = await fetch(form.action, {
         method: "POST",
-        body: formData
+        body: new FormData(form),
+        headers: {
+          Accept: "application/json"
+        }
       });
 
-      const result = await response.json();
-
-      console.log(result);
-
-      if (result.success) {
+      if (response.ok) {
 
         submitBtn.innerHTML = "Message Sent ✓";
-        submitBtn.classList.remove("bg-brand-accent", "hover:bg-blue-600");
+
+        submitBtn.classList.remove(
+          "bg-brand-accent",
+          "hover:bg-blue-600"
+        );
+
         submitBtn.classList.add("bg-green-600");
 
         form.reset();
 
       } else {
 
-        submitBtn.innerHTML = result.message || "Failed to Send";
-        submitBtn.classList.remove("bg-brand-accent", "hover:bg-blue-600");
-        submitBtn.classList.add("bg-red-600");
+        const data = await response.json();
 
+        console.log(data);
+
+        submitBtn.innerHTML =
+          data.errors?.[0]?.message || "Failed to Send";
+
+        submitBtn.classList.remove(
+          "bg-brand-accent",
+          "hover:bg-blue-600"
+        );
+
+        submitBtn.classList.add("bg-red-600");
       }
 
     } catch (error) {
@@ -327,7 +340,12 @@ function initContactForm() {
       console.error(error);
 
       submitBtn.innerHTML = "Network Error";
-      submitBtn.classList.remove("bg-brand-accent", "hover:bg-blue-600");
+
+      submitBtn.classList.remove(
+        "bg-brand-accent",
+        "hover:bg-blue-600"
+      );
+
       submitBtn.classList.add("bg-red-600");
 
     }
@@ -335,19 +353,24 @@ function initContactForm() {
     setTimeout(() => {
 
       submitBtn.disabled = false;
+
       submitBtn.innerHTML = originalText;
 
-      submitBtn.classList.remove("bg-green-600");
-      submitBtn.classList.remove("bg-red-600");
+      submitBtn.classList.remove(
+        "bg-green-600",
+        "bg-red-600"
+      );
 
-      submitBtn.classList.add("bg-brand-accent");
-      submitBtn.classList.add("hover:bg-blue-600");
+      submitBtn.classList.add(
+        "bg-brand-accent",
+        "hover:bg-blue-600"
+      );
 
     }, 3000);
 
   });
-}
 
+}
   /* ============================================
      LAZY LOADING IMAGES (if any added later)
      ============================================ */
